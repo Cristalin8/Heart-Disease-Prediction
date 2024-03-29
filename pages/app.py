@@ -53,112 +53,111 @@ def display_home_page():
 
 # Function to display Heart Disease Prediction page content
 def display_heart_disease_prediction():
-    st.title('Heart Disease Prediction')
+    st.title('Predicția apariției atacului de cord')
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        age = st.number_input('Age')
+        age = st.number_input('Vârsta')
 
     with col2:
         sex_category = st.selectbox('Sex',
-                                    ['Male', 'Female'])
+                                    ['Bărbat', 'Femeie'])
         sex_numeric = convert_cp_to_numeric(sex_category)
 
     with col3:
-        cp_category = st.selectbox('Chest Pain types',
-                                   ['typical angina', 'atypical angina', 'non-anginal pain', 'asymptomatic'])
+        cp_category = st.selectbox('Tipuri de dureri toracice',
+                                   ['angină pectorală tipică', 'angina atipică', 'durere non-anginoasă', 'asimptomatic'])
         cp_numeric = convert_cp_to_numeric(cp_category)
 
     with col1:
-        trestbps = st.number_input('Resting Blood Pressure')
+        trestbps = st.number_input('Tensiunea arterială în repaus')
 
     with col2:
-        chol = st.number_input('Serum Cholestoral in mg/dl')
+        chol = st.number_input('Colestoral seric în mg/dl')
 
     with col3:
-        fbs_category = st.selectbox('Fasting Blood Sugar > 120 mg/dl',
-                                    ['True', 'False'])
+        fbs_category = st.selectbox('Zahărul din sânge în stare de repaus > 120 mg/dl',
+                                    ['Adevărat', 'Fals'])
         fbs_numeric = convert_cp_to_numeric(fbs_category)
 
     with col1:
-        restecg_category = st.selectbox('Resting Electrocardiographic results',
-                                        ['Normal', 'Having ST-T wave abnormality',
-                                         'Left ventricular hypertrophy by Estes '
-                                         'criteria'])
+        restecg_category = st.selectbox('Rezultate electrocardiografice în repaus',
+                                        ['Normal', 'Anomalie a undei ST-T',
+                                         'Hipertrofia ventriculară stângă după criteriile Estes'])
         restecg_numeric = convert_cp_to_numeric(restecg_category)
 
     with col2:
-        thalach = st.number_input('Maximum Heart Rate achieved')
+        thalach = st.number_input('Ritmul cardiac maxim atins')
 
     with col3:
-        exang_category = st.selectbox('Exercise Induced Angina', ['Yes', 'No'])
+        exang_category = st.selectbox('Angina indusă de exercițiu', ['Da', 'Nu'])
         exang_numeric = convert_cp_to_numeric(exang_category)
 
     with col1:
-        oldpeak = st.number_input('ST depression induced by exercise')
+        oldpeak = st.number_input('Depresia ST indusă de exercițiu')
 
     with col2:
-        slope_category = st.selectbox('Slope of the peak exercise ST segment', ['Upsloping', 'Flat', 'Downsloping'])
+        slope_category = st.selectbox('Panta segmentului ST de vârf de exercițiu', ['Înclinată ascendentă', 'Plată', 'Înclinație descendentă'])
         slope_numeric = convert_cp_to_numeric(slope_category)
 
     with col3:
-        ca_category = st.selectbox('Major vessels colored by flourosopy',
-                                   ['A major vessel coloured by flouroscopy',
-                                    'Two major vessels coloured by flouroscopy',
-                                    'Three major vessels coloured by flouroscopy'])
+        ca_category = st.selectbox('Vasele majore colorate prin flouroscopie',
+                                   ['Un vas major colorat prin flouroscopie',
+                                    'Două vase majore colorate prin flouroscopie',
+                                    'Trei vase majore colorate prin flouroscopie'])
         ca_numeric = convert_cp_to_numeric(ca_category)
 
     with col1:
-        thal_category = st.selectbox('Thalassemia',
+        thal_category = st.selectbox('Talasemie',
                                      ['Normal',
-                                      'Fixed defect',
-                                      'Reversable defect'])
+                                      'Defect fixat',
+                                      'Defect reversibil'])
         thal_numeric = convert_cp_to_numeric(thal_category)
 
     # code for Prediction
     heart_diagnosis = ''
 
     # creating a button for Prediction
-    if st.button('Heart Disease Test Result'):
+    if st.button('Rezultatul testului predicției atacului de cord'):
         heart_prediction = heart_disease_model.predict(
             [[age, sex_numeric, cp_numeric, trestbps, chol, fbs_numeric, restecg_numeric, thalach,
               exang_numeric, oldpeak, slope_numeric, ca_numeric, thal_numeric]])
 
         if heart_prediction[0] == 1:
-            heart_diagnosis = 'The person is having heart disease'
+            heart_diagnosis = 'Persoana poate suferi un atac de cord'
         else:
-            heart_diagnosis = 'The person does not have any heart disease'
+            heart_diagnosis = 'Persoana nu poate suferi un atac de cord'
 
     st.success(heart_diagnosis)
 
 
 def convert_sex_to_numeric(sex_category):
-    if sex_category == 'Female':
+    if sex_category == 'Femeie':
         return 0
-    elif sex_category == 'Male':
+    elif sex_category == 'Bărbat':
         return 1
     else:
         return 2
 
 
 def convert_cp_to_numeric(cp_category):
-    if cp_category == 'typical angina':
+    if cp_category == 'angină pectorală tipică':
         return 0
-    elif cp_category == 'atypical angina':
+    elif cp_category == 'angina atipică':
         return 1
-    elif cp_category == 'non-anginal pain':
+    elif cp_category == 'durere non-anginoasă':
         return 2
-    elif cp_category == 'asymptomatic':
+    elif cp_category == 'asimptomatic':
         return 3
     else:
         return 4
 
 
 def convert_fbs_to_numeric(fbs_category):
-    if fbs_category == 'False':
+    if fbs_category == 'Fals':
         return 0
-    elif fbs_category == 'True':
+    elif fbs_category == 'Adevărat':
         return 1
     else:
         return 2
@@ -167,40 +166,40 @@ def convert_fbs_to_numeric(fbs_category):
 def convert_restecg_to_numeric(restecg_category):
     if restecg_category == 'Normal':
         return 0
-    elif restecg_category == 'Having ST-T wave abnormality':
+    elif restecg_category == 'Anomalie a undei ST-T':
         return 1
-    elif restecg_category == 'Left ventricular hypertrophy by Estes criteria':
+    elif restecg_category == 'Hipertrofia ventriculară stângă după criteriile Estes':
         return 2
     else:
         return 3
 
 
 def convert_exang_to_numeric(exang_category):
-    if exang_category == 'No':
+    if exang_category == 'Nu':
         return 0
-    elif exang_category == 'Yes':
+    elif exang_category == 'Da':
         return 1
     else:
         return 2
 
 
 def convert_slope_to_numeric(slope_category):
-    if slope_category == 'Upsloping':
+    if slope_category == 'Înclinată ascendentă':
         return 0
-    elif slope_category == 'Flat':
+    elif slope_category == 'Plată':
         return 1
-    elif slope_category == 'Downsloping':
+    elif slope_category == 'Înclinație descendentă':
         return 2
     else:
         return 3
 
 
 def convert_ca_to_numeric(ca_category):
-    if ca_category == 'A major vessel coloured by flouroscopy':
+    if ca_category == 'Un vas major colorat prin flouroscopie':
         return 1
-    elif ca_category == 'Two major vessels coloured by flouroscopy':
+    elif ca_category == 'Două vase majore colorate prin flouroscopie':
         return 2
-    elif ca_category == 'Three major vessels coloured by flouroscopy':
+    elif ca_category == 'Trei vase majore colorate prin flouroscopie':
         return 3
     else:
         return 4
@@ -209,16 +208,16 @@ def convert_ca_to_numeric(ca_category):
 def convert_thal_to_numeric(thal_category):
     if thal_category == 'Normal':
         return 1
-    elif thal_category == 'Fixed defect':
+    elif thal_category == 'Defect fixat':
         return 2
-    elif thal_category == 'Reversable defect':
+    elif thal_category == 'Defect reversibil':
         return 3
     else:
         return 0
 
 
 # Display content based on selected page
-if selected == 'Home':
+if selected == 'Acasă':
     display_home_page()
-elif selected == 'Heart Disease Prediction':
+elif selected == 'Predicția apariției atacului de cord':
     display_heart_disease_prediction()
