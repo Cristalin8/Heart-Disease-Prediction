@@ -6,8 +6,8 @@ heart_disease_model = pickle.load(open(r'C:\Sophi\model\heart_disease_model.sav'
 # Sidebar navigation
 st.sidebar.markdown("## Menu")
 selected = st.sidebar.selectbox('Select Page', [
-    'Home',
-    'Heart Disease Prediction'
+    'Acasă',
+    'Predicția apariției atacului de cord'
 ])
 
 
@@ -67,7 +67,8 @@ def display_heart_disease_prediction():
 
     with col3:
         cp_category = st.selectbox('Tipuri de dureri toracice',
-                                   ['angină pectorală tipică', 'angina atipică', 'durere non-anginoasă', 'asimptomatic'])
+                                   ['angină pectorală tipică', 'angina atipică', 'durere non-anginoasă',
+                                    'asimptomatic'])
         cp_numeric = convert_cp_to_numeric(cp_category)
 
     with col1:
@@ -98,7 +99,8 @@ def display_heart_disease_prediction():
         oldpeak = st.number_input('Depresia ST indusă de exercițiu')
 
     with col2:
-        slope_category = st.selectbox('Panta segmentului ST de vârf de exercițiu', ['Înclinată ascendentă', 'Plată', 'Înclinație descendentă'])
+        slope_category = st.selectbox('Panta segmentului ST de vârf de exercițiu',
+                                      ['Înclinată ascendentă', 'Plată', 'Înclinație descendentă'])
         slope_numeric = convert_cp_to_numeric(slope_category)
 
     with col3:
