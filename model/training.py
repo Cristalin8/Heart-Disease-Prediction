@@ -30,5 +30,6 @@ model.fit(X_train_scaled, y_train)
 accuracy = model.score(X_test_scaled, y_test)
 print(f"Model Accuracy: {accuracy}")
 
+
 # Save the model using joblib
 joblib.dump(model, 'heart_disease_model.sav')
