@@ -32,4 +32,4 @@ print(f"Model Accuracy: {accuracy}")
 
 
 # Save the model using joblib
-joblib.dump(model, 'heart_disease_model.sav')
+joblib.dump(model, 'heart_disease_model_m.sav')
