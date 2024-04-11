@@ -12,7 +12,7 @@ st.set_page_config(
     layout="wide",
 )
 
-with open(r'model/heart_disease_model.sav', 'rb') as file:
+with open(r'C:\Djessy\model\logistic_regression_model.sav', 'rb') as file:
     heart_disease_model = joblib.load(file)
 
 with st.sidebar:
@@ -509,7 +509,7 @@ def display_statistics_heart_disease():
             'Sex': num_cases_by_sex.index.tolist() * 2,
             'Număr cazuri': num_cases_by_sex.tolist() + num_heart_attacks_by_sex.tolist(),
             'Tip cazuri': ['Total'] * 2 + ['Atac de cord'] * 2,
-            'Base': [0, 0, 0, 0]  # Punctul de început pentru fiecare coloană
+            'Base': [0, 0, 0, 0]
         })
 
         fig = px.bar(df, x='Sex', y='Număr cazuri', color='Tip cazuri', base='Base',
