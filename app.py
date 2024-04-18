@@ -12,7 +12,7 @@ st.set_page_config(
     layout="wide",
 )
 
-with open(r'C:\Djessy\model\logistic_regression_model.sav', 'rb') as file:
+with open(r'train_model/models/random_forest_model.sav', 'rb') as file:
     heart_disease_model = joblib.load(file)
 
 with st.sidebar:
@@ -154,7 +154,7 @@ def display_heart_disease_prediction():
                 time.sleep(2)
                 st.toast('Respect!', icon='😎')
                 time.sleep(2)
-                st.toast('Un model de disciplină și responsabilitate admirabil!', icon='😍')
+                st.toast('Un train_model de disciplină și responsabilitate admirabil!', icon='😍')
                 time.sleep(2)
                 st.toast('Un exemplu viu de dedicare și preocupare pentru sănătate sa!', icon='😁')
                 time.sleep(2)
@@ -387,7 +387,7 @@ def display_statistics_heart_disease():
     tab1, tab2, tab3, tab4 = st.tabs(["🩺Presiunea arterială", "📈Ritmul cardiac în raport cu vârsta",
                                       "🤕Tipuri de durere pe gen", "💔Atacuri de cord pe gen"])
 
-    data = pd.read_csv('model/heart_disease_data.csv')
+    data = pd.read_csv('train_model/data/heart_disease_data.csv')
 
     with tab1:
         st.write('O presupunere care persistă de mult timp, anume dacă există o asociere semnificativă între sex și '
@@ -403,8 +403,8 @@ def display_statistics_heart_disease():
         st.write('În urma analiza acestei presupuneri, am optat pentru vizualizarea cu '
                  'ajutorul unui grafic de tip bar pentru a compara distribuțiile tensiunii arteriale în '
                  'funcție de sex. Dar, spre surprindere presupunerea nu s-a adeverit, fiind depistată o diferență '
-                 'minoră în setul de date analizat. De aceia, la antrenarea unui model de **Machine Learning** nu este'
-                 ' atât de important acest parametru.')
+                 'minoră în setul de date analizat. De aceia, la antrenarea unui train_model de **Machine Learning** '
+                 'nu este atât de important acest parametru.')
     with tab2:
         media_thalach = data['thalach'].mean()
 
