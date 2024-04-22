@@ -5,6 +5,7 @@ import pandas as pd
 import altair as alt
 import plotly.express as px
 import streamlit as st
+import json
 
 st.set_page_config(
     page_title="Djessy",
@@ -17,16 +18,28 @@ with open(r'train_model/models/random_forest_model.sav', 'rb') as file:
 
 with st.sidebar:
     selected = option_menu('Main Menu',
-                           ['Acasă', 'Predicția apariției atacului de cord', 'Analiza datelor'],
-                           icons=['house', 'magic', 'clipboard-data'], menu_icon='cast',
+                           ['Acasă', 'Predicția apariției atacului de cord', 'Analiza datelor',
+                            'Provocarea inimii sănătoase'],
+                           icons=['house', 'magic', 'clipboard-data', 'controller'], menu_icon='cast',
                            default_index=0)
 
 
 def display_home_page():
-    st.title('_Bine ați venit pe Portalul Djessy_')
-    st.write('', )
+    st.markdown(
+        """
+        <style>
+        .centered-title {
+            text-align: center;
+        }
+        </style>
+        """,
+        unsafe_allow_html=True,
+    )
 
-    st.subheader('Sănătatea Cardiovasculară: O Privire de Ansamblu', divider='red')
+    # Afisează titlul aliniat la centru folosind stilul definit
+    st.markdown("<h1 class='centered-title'>Bine ați venit pe Portalul Djessy</h1>", unsafe_allow_html=True)
+
+    st.subheader('Sănătatea Cardiovasculară - o privire de ansamblu', divider='red')
 
     st.write(
         'Pe parcursul ultimelor decenii, cercetările în domeniul sănătății cardiovasculare au evoluat considerabil, '
@@ -35,21 +48,21 @@ def display_home_page():
         'nivelurile de colesterol și presiunea arterială_, care contribuie la apariția atacurilor de cord.'
     )
 
-    st.subheader('Problema Atacurilor de Cord', divider='red')
+    st.subheader('Problema atacurilor de cord', divider='red')
     st.write(
         '_Atacul de cord (infarctul miocardic)_ rămâne una dintre cele mai presante probleme de sănătate la nivel '
         'mondial, exercitând o presiune semnificativă asupra sistemelor de sănătate și având consecințe serioase '
         'asupra calității vieții și a longevității populației.'
     )
 
-    st.subheader('Statistici și Impact Economic', divider='red')
+    st.subheader('Statistici și impact economic', divider='red')
     st.write(
         'Bolile de inimă au costat Statele Unite aproximativ _239,9 miliarde de dolari în fiecare an_, în perioada '
         '2018-2019. Acest lucru include costul serviciilor de asistență medicală, al medicamentelor și al '
         'productivității pierdute din cauza decesului.'
     )
 
-    st.subheader('Impactul Atacurilor de Cord', divider='red')
+    st.subheader('Impactul atacurilor de cord', divider='red')
     st.write(
         'Dacă ne axăm pe atacuri de cord, în Statele Unite, cineva suferă un atac de cord la fiecare _40 de secunde_.'
         ' În fiecare an, aproximativ _805.000 de persoane_ din Statele Unite suferă un atac de cord.'
@@ -154,7 +167,7 @@ def display_heart_disease_prediction():
                 time.sleep(2)
                 st.toast('Respect!', icon='😎')
                 time.sleep(2)
-                st.toast('Un train_model de disciplină și responsabilitate admirabil!', icon='😍')
+                st.toast('Un model de disciplină și responsabilitate admirabil!', icon='😍')
                 time.sleep(2)
                 st.toast('Un exemplu viu de dedicare și preocupare pentru sănătate sa!', icon='😁')
                 time.sleep(2)
@@ -403,7 +416,7 @@ def display_statistics_heart_disease():
         st.write('În urma analiza acestei presupuneri, am optat pentru vizualizarea cu '
                  'ajutorul unui grafic de tip bar pentru a compara distribuțiile tensiunii arteriale în '
                  'funcție de sex. Dar, spre surprindere presupunerea nu s-a adeverit, fiind depistată o diferență '
-                 'minoră în setul de date analizat. De aceia, la antrenarea unui train_model de **Machine Learning** '
+                 'minoră în setul de date analizat. De aceia, la antrenarea unui model de **Machine Learning** '
                  'nu este atât de important acest parametru.')
     with tab2:
         media_thalach = data['thalach'].mean()
@@ -530,9 +543,107 @@ def display_statistics_heart_disease():
                  'cord, spre deosebire de bărbați unde raportul este 55%.')
 
 
+def afisare_fereastra_pop_up(message):
+    st.markdown(
+        f""" <div style='position: fixed; bottom: 10px; right: 10px; background-color: #f4f4f4; padding: 10px; 
+        border-radius: 10px; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);'> <span style='color: #ff5733; font-weight: 
+        bold;'>{message}</span>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+
+def display_heart_challenge_disease():
+    st.markdown("""
+    <style>
+    div.stButton > button:first-child {
+        display: block;
+        margin: 0 auto;
+    </style>
+    """, unsafe_allow_html=True)
+
+    default_values = {'current_index': 0, 'current_question': 0, 'score': 0, 'selected_option': None,
+                      'answer_submitted': False}
+    for key, value in default_values.items():
+        st.session_state.setdefault(key, value)
+
+    with open('content/quiz_data.json', 'r', encoding='utf-8') as f:
+        quiz_data = json.load(f)
+
+    def restart_quiz():
+        st.session_state.current_index = 0
+        st.session_state.score = 0
+        st.session_state.selected_option = None
+        st.session_state.answer_submitted = False
+
+    def submit_answer():
+
+        if st.session_state.selected_option is not None:
+            st.session_state.answer_submitted = True
+            if st.session_state.selected_option == quiz_data[st.session_state.current_index]['answer']:
+                st.session_state.score += 10
+        else:
+            st.warning("Vă rugăm să selectați o opțiune înainte de a trimite.")
+
+    def next_question():
+        st.session_state.current_index += 1
+        st.session_state.selected_option = None
+        st.session_state.answer_submitted = False
+
+    question_item = quiz_data[st.session_state.current_index]
+    st.subheader(f"Întrebarea {st.session_state.current_index + 1}")
+    st.title(f"{question_item['question']}")
+    st.write(question_item['information'])
+
+    st.markdown(""" ___""")
+
+    options = question_item['options']
+    correct_answer = question_item['answer']
+
+    if st.session_state.answer_submitted:
+        for i, option in enumerate(options):
+            label = option
+            if option == correct_answer:
+                st.success(f"{label} (O alegere bună!)")
+            elif option == st.session_state.selected_option:
+                st.error(f"{label} (Ai nevoie de o schimbare!)")
+            else:
+                st.write(label)
+    else:
+        for i, option in enumerate(options):
+            if st.button(option, key=i, use_container_width=True):
+                st.session_state.selected_option = option
+
+    st.markdown(""" ___""")
+
+    if st.session_state.answer_submitted:
+        if st.session_state.current_index < len(quiz_data) - 1:
+            st.button('Următoarea întrebare', on_click=next_question)
+        else:
+            afisare_fereastra_pop_up(f"Chestionar completat! Scorul tău este: {st.session_state.score} / "
+                                     f"{len(quiz_data) * 10}")
+            if st.button('Repornește', on_click=restart_quiz):
+                pass
+    else:
+        if st.session_state.current_index < len(quiz_data):
+            st.button('Trimite', on_click=submit_answer)
+
+
+def display_footer():
+    st.markdown("---")
+    st.markdown("<div style='text-align: center;'>©Dezvoltat de Ciobanu Cristalin</div>", unsafe_allow_html=True)
+
+
 if selected == 'Acasă':
     display_home_page()
+    display_footer()
 elif selected == 'Predicția apariției atacului de cord':
     display_heart_disease_prediction()
+    display_footer()
 elif selected == 'Analiza datelor':
     display_statistics_heart_disease()
+    display_footer()
+elif selected == 'Provocarea inimii sănătoase':
+    display_heart_challenge_disease()
+    display_footer()

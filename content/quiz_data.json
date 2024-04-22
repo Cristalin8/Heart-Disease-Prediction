@@ -1,0 +1,112 @@
+[
+    {
+        "question": "Care este obiceiul tău de exerciții fizice?",
+        "information": "Exercițiile fizice regulate sunt esențiale pentru menținerea sănătății inimii și a întregului corp.",
+        "options": [
+            "Fac exerciții de aerobic sau alerg în fiecare zi",
+            "Merg la sală de 3-4 ori pe săptămână",
+            "Fac plimbări scurte ocazional",
+            "Nu fac exerciții fizice regulat"
+        ],
+        "answer": "Fac exerciții de aerobic sau alerg în fiecare zi"
+    },
+    {
+        "question": "Cum îți petreci timpul liber în weekend?",
+        "information": "Activitățile de weekend pot influența nivelul de activitate și sănătatea generală.",
+        "options": [
+            "Particip la activități sportive sau recreative",
+            "Ies la plimbare în aer liber",
+            "Stau acasă și mă uit la televizor sau navighez pe internet",
+            "Consum alcool și fumez cu prietenii"
+        ],
+        "answer": "Particip la activități sportive sau recreative"
+    },
+    {
+        "question": "Care este nivelul tău de stres zilnic?",
+        "information": "Stresul poate afecta negativ sănătatea inimii și bunăstarea generală.",
+        "options": [
+            "Sunt destul de relaxat și gestionez bine stresul",
+            "Întâmpin stres la serviciu sau în anumite situații, dar îl gestionez",
+            "Sunt adesea stresat și mă simt copleșit",
+            "Mă simt mereu foarte stresat și anxios"
+        ],
+        "answer": "Sunt destul de relaxat și gestionez bine stresul"
+    },
+    {
+        "question": "Cum îți organizezi somnul în timpul săptămânii?",
+        "information": "Calitatea somnului poate influența sănătatea inimii și nivelul de energie.",
+        "options": [
+            "Dorm 7-8 ore pe noapte regulat",
+            "Dorm 6-7 ore pe noapte, dar încerc să recuperez în weekend",
+            "Dorm mai puțin de 6 ore pe noapte și sunt obosit în timpul zilei",
+            "Am un program de somn neregulat și dorm foarte puțin"
+        ],
+        "answer": "Dorm 7-8 ore pe noapte regulat"
+    },
+    {
+        "question": "Ce alegi să bei în mod regulat?",
+        "information": "Opțiunile de băuturi pot afecta sănătatea inimii și nivelul de hidratare.",
+        "options": [
+            "Apă și ceaiuri naturale",
+            "Sucuri naturale și smoothie-uri",
+            "Cafea și băuturi energizante",
+            "Băuturi alcoolice în mod regulat"
+        ],
+        "answer": "Apă și ceaiuri naturale"
+    },
+    {
+        "question": "Cum îți gestionezi greutatea corporală?",
+        "information": "Greutatea corporală poate influența riscul de boli cardiovasculare și starea generală de sănătate.",
+        "options": [
+            "Mănânc echilibrat și fac exerciții pentru a-mi menține greutatea",
+            "Fac diete ocazionale pentru a slăbi sau a mă menține în formă",
+            "Nu sunt preocupat de greutatea mea și mănânc ce-mi place",
+            "Am tendința de a lua în greutate și nu fac nimic în acest sens"
+        ],
+        "answer": "Mănânc echilibrat și fac exerciții pentru a-mi menține greutatea"
+    },
+    {
+        "question": "Ai obiceiul de a fuma?",
+        "information": "Fumatul poate avea efecte negative asupra sănătății inimii și plămânilor.",
+        "options": [
+            "Nu fumez deloc",
+            "Fumez ocazional în situații sociale",
+            "Fumez câteva țigări pe zi",
+            "Fumez mai mult de un pachet de țigări pe zi"
+        ],
+        "answer": "Nu fumez deloc"
+    },
+    {
+        "question": "Care este consumul tău de sare?",
+        "information": "Consumul excesiv de sare poate crește riscul de hipertensiune și probleme cardiace.",
+        "options": [
+            "Consum foarte puțină sare în mâncare",
+            "Folosesc sare moderat în preparate",
+            "Adaug sare în exces în mâncare",
+            "Consum alimente procesate cu conținut ridicat de sare"
+        ],
+        "answer": "Consum foarte puțină sare în mâncare"
+    },
+    {
+        "question": "Cum gestionezi situațiile de conflict sau tensiune în relații?",
+        "information": "Gestionarea eficientă a conflictelor poate reduce nivelul de stres și îmbunătăți relațiile interpersonale.",
+        "options": [
+            "Comunic deschis și încerc să rezolv problemele calm",
+            "Evit conflictele",
+            "Devin iritat și reacționez agresiv în situații tensionate",
+            "Ignor problemele și le las să escaladeze"
+        ],
+        "answer": "Comunic deschis și încerc să rezolv problemele calm"
+    },
+    {
+        "question": "Îți plac mai mult mâncărurile fast food sau mâncărurile picante?",
+        "information": "Preferințele culinare pot influența alegerile alimentare și stilul de viață.",
+        "options": [
+            "Prefer mâncărurile fast food",
+            "Prefer mâncărurile picante",
+            "Îmi plac ambele în mod egal",
+            "Nu consum frecvent nici mâncăruri fast food, nici mâncăruri picante"
+        ],
+        "answer": "Nu consum frecvent nici mâncăruri fast food, nici mâncăruri picante"
+    }
+]
